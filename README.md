@@ -14,7 +14,3 @@ Code must be readable, modular, and reusable
 Include a brief comment in the test file explaining your choice of flow and why it matters
 Bonus
 Integrate this into a GitHub Actions workflow that runs on push
-
-
-git config --global user.email "prachi.mysha@gmail.com"
-  git config --global user.name "Prachi"
