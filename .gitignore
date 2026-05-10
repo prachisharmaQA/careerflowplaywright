@@ -1,0 +1,9 @@
+node_modules/
+dis/
+.env/
+
+playwright-report/
+test-results/
+screensots/
+
+.DS_Store
