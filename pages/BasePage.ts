@@ -1,19 +1,24 @@
-import {Page, Locator, expect} from '@playwright/test';
+import { Page, expect } from '@playwright/test';
 
-export class BasePage{
-    readonly page : Page;
+/**
+ * BasePage — shared primitives for every Page Object.
+ * Keep this surface minimal; helpers that only one page needs belong on that page.
+ */
+export class BasePage {
+  readonly page: Page;
 
-    constructor (page: Page)
-    {
-        this.page = page;
-    }
+  constructor(page: Page) {
+    this.page = page;
+  }
 
-    async goto (path: string='/') {
-        await this.page.goto(path, { waitUntil: 'domcontentloaded' });
-    
-    }
+  /** Navigates to a path relative to `baseURL` from `playwright.config.ts`. */
+  async goto(path = '/') {
+    await this.page.goto(path, { waitUntil: 'domcontentloaded' });
+  }
 
-async waiforNetworkidle()
-{ 
-    await this.page.waitForLoadState('networkidle');}
+  /** Asserts the page URL contains the given substring. Escapes regex specials. */
+  async assertUrlContains(substring: string) {
+    const escaped = substring.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    await expect(this.page).toHaveURL(new RegExp(escaped));
+  }
 }

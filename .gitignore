@@ -1,9 +1,15 @@
 node_modules/
-dis/
-.env/
+dist/
 
+# Secrets — credentials and persisted auth state
+.env
+.env.*
+!.env.example
+.auth/
+
+# Playwright artefacts
 playwright-report/
 test-results/
-screensots/
+screenshots/
 
 .DS_Store
